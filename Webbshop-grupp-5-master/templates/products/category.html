@@ -1,0 +1,83 @@
+{% extends "baseTemplate.html" %}
+{% block title %}Start{% endblock %}
+{% block maincontent %}
+
+
+
+
+
+            <!-- row -->
+            <div class="row">
+
+                <!-- section title -->
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h3 class="title">{{ category.CategoryName }}</h3>
+                        <div class="section-nav">
+                            <ul class="section-tab-nav tab-nav">
+                                <li class="active"><a data-toggle="tab" href="#tab1">Latest</a></li>
+                                <li><a data-toggle="tab" href="#tab1">Price</a></li>
+                                <li><a data-toggle="tab" href="#tab1">Name</a></li>
+                                <li><a data-toggle="tab" href="#tab1">Asc</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /section title -->
+                <!-- Products tab & slick -->
+
+                <div class="col-md-12">
+                    <div class="gallery">
+                    {% for product in category.Products %}
+
+                    <div class="product-box">
+                        <div class="productcontainer">
+                            <a href="{{ url_for('product.product', id=product.ProductID)  }}" class="cta-btn"><img src="https://picsum.photos/300/300?{{ product.ProductID }}" alt="cookies" class="hero-image"/> <i class="fa fa-arrow-circle-right"></i></a>
+                            <a style="float: right;" href="{{url_for('product.category',id = category.CategoryID, productid=product.ProductID, wishlist=True) }}" >Wishlist<i class="fa fa-heart-o"></i></a>
+
+                            <div class="price">$
+                                <div>{{ product.UnitPrice }}</div></div>
+            
+                            <div class="information">
+
+
+                                <div class="name">{{ product.ProductName }}</div>
+                                <div class="name">{{ product.CampaignPrice }}%</div>
+                                <div class="name">{{ product.Rating }}</div>
+                                <div class="store">@Model.Color, @Model.Color</div>
+            
+                                <a href="{{url_for('product.category',id = category.CategoryID, productid=product.ProductID, purchase=True) }}" class="button">Purchase Product</a>
+            
+                            </div> <!-- end information -->
+                        </div> <!-- end container -->
+                    </div>
+                    
+                                    <!-- /product -->
+                                    {%  endfor  %}
+                </div>
+
+
+
+                            <!-- /tab -->
+                <!-- Products tab & slick -->
+            </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script src="{{ url_for('static',filename='js/rating.js') }}"></script>
+<script src="{{ url_for('static',filename='js/finale.js') }}"></script>
+<script>
+    starBars(
+    five_stars = '{{five_stars}}',
+    four_stars = '{{four_stars}}',
+    three_stars = '{{three_stars}}',
+    two_stars = '{{two_stars}}',
+    one_star = '{{one_star}}',
+    total_votes = '{{count}}'
+    )
+</script>
+
+{% endblock %}
+

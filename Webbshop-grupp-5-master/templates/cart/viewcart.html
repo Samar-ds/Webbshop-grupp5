@@ -1,0 +1,33 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}Your Cart{% endblock %}
+{% block maincontent %}
+
+
+<table class="categories" style="font-size: 20px;">
+    <h2>Your Cart <a style= "float: right;" href="{{url_for('cart.checkout')}}"><button style="float: right; background-color: #D10024;" type="button" class="btn btn-primary tm-btn-submit rounded-0">Checkout</button></a></h2>
+
+    <tr>
+        <th>ProductId</th>
+        <th>Name</th>
+        <th>Quantity per unit</th>
+        <th>UnitPrice</th>
+        <th>Amount</th>
+        <th>Total</th>
+        <th></th>
+    </tr>
+    {% for prod in products %}
+    <tr>
+        <td><a href="{{url_for('product.product', id=prod.ProductID)}}">{{ prod.ProductID }}</a></td>
+        <td>{{ prod.ProductName }}</td>
+        <td>{{ prod.QuantityPerUnit }}</td>
+        <td>{{ prod.UnitPrice }}</td>
+        <td>{{ products[prod] }}</td>
+        <td>{{ prod.UnitPrice * products[prod]}}</td>
+        <td><a style="float: right; color: #D10024;" href="{{url_for('cart.viewcart', delete=True, productid=prod.ProductID)}}"><i class='bx bx-trash'></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+<h3 style="float: right">Total: {{total}}</h3>
+
+{% endblock %}

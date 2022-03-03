@@ -1,0 +1,46 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}New product{% endblock %}
+{% block maincontent %}
+
+<div style="text-align: center;">
+<form method="post" style="width: 50%; display: inline-block;" >
+    <h2>New product</h2>
+    {{ form.csrf_token }}
+    <div style="text-align: left; color: #D10024;">
+        {{ render_field(form.ProductName) }}
+    </div>
+
+    <div style="text-align: left; color: #D10024;">
+        {{ render_field(form.CategoryId) }}
+    </div>
+
+    <div style="text-align: left; color: #D10024;">
+      {{ render_field(form.QuantityPerUnit) }}
+    </div>
+
+    <div style="text-align: left; color: #D10024;">
+      {{ render_field(form.UnitPrice) }}
+    </div>
+
+    <div style="text-align: left; color: #D10024;">
+      {{ render_field(form.UnitsInStock) }}
+    </div>
+
+    <div style="text-align: left; color: #D10024;">
+      {{ render_field(form.ReorderLevel) }}
+    </div>
+
+    <div style="text-align: left; color: #D10024;">
+      {{ render_field(form.CampaignPrice) }}
+    </div>
+
+    <div>
+        <button style="float: right;" type="submit">
+          Add
+        </button>
+      </div>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+/env
+/__pycache__
+/areas/products/__pycache__
+/areas/site/__pycache__
+/migrations/__pycache__
+/migrations/versions/__pycache__
+/areas/admin/__pycache__/adminPages.cpython-39.pyc
+/areas/products/__pycache__/productPages.cpython-39.pyc
+/areas/products/__pycache__/services.cpython-39.pyc
+/migrations/__pycache__/env.cpython-39.pyc

@@ -1,0 +1,26 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}Checkout{% endblock %}
+{% block maincontent %}
+
+<div style="text-align: center;">
+<form method="post" style="width: 50%; display: inline-block;" >
+    <h2>Checkout</h2>
+    {{ form.csrf_token }}
+    <div style="text-align: left; color: #D10024;">
+        {{ render_field(form.Cardnumber) }}
+    </div>
+
+    <div style="text-align: left; color: #D10024;">
+        {{ render_field(form.CVC) }}
+    </div>
+
+    <div>
+        <button style="float: right; background-color: #D10024; color: white;" type="submit">
+          Pay
+        </button>
+      </div>
+</form>
+</div>
+
+{% endblock %}

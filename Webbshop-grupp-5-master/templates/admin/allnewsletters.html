@@ -1,0 +1,37 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}All newsletters{% endblock %}
+{% block maincontent %}
+
+
+<table class="categories" style="font-size: 20px;">
+    <h2>Newsletters <a style= "float: right;" href="{{ url_for('Admin.addNewletter') }}"><button style="float: right; background-color: #D10024;" type="button" class="btn btn-primary tm-btn-submit rounded-0">Create New</button></a>
+    </h2>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        {% if sortOrder == '0' %}
+        <th><a class="newsletterlink" href="{{  url_for('Admin.allnewsletters', sortOrder='1') }}">See sent Mails</a></th>
+        {% else %}
+        <th><a class="newsletterlink" href="{{  url_for('Admin.allnewsletters', sortOrder='0') }}">See not sent mails</a></th>
+        {% endif %}
+    </tr>
+    {% for letter in newsletters %}
+    <tr>
+        {% if sortOrder == "0" %}
+        <td><a style="color: #D10024;" href="{{ url_for('Admin.editnewsletter', id=letter.NewsletterId) }}">{{ letter.NewsletterId }}</a></td>
+        {% else %}
+        <td>{{ letter.NewsletterId }}</td>
+        {% endif %}
+        <td>{{ letter.Title }}</td>
+        {% if sortOrder == "0" %}
+        <td><a style="float: right; color: #D10024;" href="{{ url_for('Admin.sendnewsletters', id=letter.NewsletterId) }}">Send</a></td>
+        {% else %}
+        <td><a style="float: right; color: #D10024;" href="{{ url_for('Admin.viewnewsletters', id=letter.NewsletterId) }}">View</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

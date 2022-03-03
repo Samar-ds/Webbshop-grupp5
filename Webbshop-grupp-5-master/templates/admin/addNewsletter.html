@@ -1,0 +1,26 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}New Newsletter{% endblock %}
+{% block maincontent %}
+
+<div style="text-align: center;">
+<form method="post" style="width: 50%; display: inline-block;" >
+    <h2>New Newsletter</h2>
+    {{ form.csrf_token }}
+    <div style="text-align: left; color: #D10024;">
+        {{ render_field(form.Title) }}
+    </div>
+
+    <div style="text-align: left; color: #D10024;">
+        {{ render_field(form.Content) }}
+    </div>
+
+    <div>
+        <button style="float: right;" type="submit">
+          Create
+        </button>
+      </div>
+</form>
+</div>
+
+{% endblock %}

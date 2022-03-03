@@ -1,0 +1,20 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}View newsletter{% endblock %}
+{% block maincontent %}
+
+
+<table class="categories" style="font-size: 20px;">
+    <h2>{{ newsletter.Title }}</h2>
+    <tr>
+        <th>Sent to:</th>
+    </tr>
+    {% for mail in mails %}
+    <tr>
+        <td>{{ mail[0] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}Your Wishlist{% endblock %}
+{% block maincontent %}
+
+
+<table class="categories" style="font-size: 20px;">
+    <h2>Your Wishlist</h2>
+
+    <tr>
+        <th>ProductId</th>
+        <th>Name</th>
+        <th>Quantity per unit</th>
+        <th>UnitPrice</th>
+        <th>Amount</th>
+        <th>Total</th>
+        <th>Buy</th>
+        <th></th>
+    </tr>
+    {% for prod in products %}
+    <tr>
+        <td>{{ prod.ProductID }}</td>
+        <td>{{ prod.ProductName }}</td>
+        <td>{{ prod.QuantityPerUnit }}</td>
+        <td>{{ prod.UnitPrice }}</td>
+        <td>{{ products[prod] }}</td>
+        <td>{{ prod.UnitPrice * products[prod]}}</td>
+        <td><a style="margin-left: 25%; color: #D10024;" href="{{url_for('wishlist.viewwishlist', purchase=True, productid=prod.ProductID, antal=products[prod])}}"><i class='bx bx-plus-medical'></i></a></td>
+        <td><a style="float: right; color: #D10024;" href="{{url_for('wishlist.viewwishlist', delete=True, productid=prod.ProductID)}}"><i class='bx bx-trash'></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+<h3 style="float: right">Total: {{total}}</h3>
+
+{% endblock %}

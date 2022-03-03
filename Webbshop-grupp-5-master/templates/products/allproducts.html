@@ -1,0 +1,40 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}All products{% endblock %}
+{% block maincontent %}
+
+
+<table class="categories" style="font-size: 20px;">
+    <h2>Products <a style= "float: right;" href="{{ url_for('product.addProduct') }}"><button style="float: right; background-color: #D10024;" type="button" class="btn btn-primary tm-btn-submit rounded-0">Create New</button></a>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity per unit</th>
+        <th>Unit price</th>
+        <th>Units in stock</th>
+        <th>Inits on order</th>
+        <th>Reorder level</th>
+        <th>CampaignPrice</th>
+        <th>Rating</th>
+        <th></th>
+    </tr>
+    {% for prod, cat in Products %}
+    <tr>
+        <td><a style="color: #D10024;" href="{{ url_for('product.product', id=prod.ProductID) }}">{{ prod.ProductID }}</a></td>
+        <td>{{ prod.ProductName }}</td>
+        <td>{{ cat }}</td>
+        <td>{{ prod.QuantityPerUnit }}</td>
+        <td>{{ prod.UnitPrice }}</td>
+        <td>{{ prod.UnitsInStock }}</td>
+        <td>{{ prod.UnitsOnOrder }}</td>
+        <td>{{ prod.ReorderLevel }}</td>
+        <td>{{ prod.CampaignPrice }}%</td>
+        <td>{{ prod.Rating }}</td>
+        <td><a style="float: right; color: #D10024;" href="{{ url_for('product.editproduct', id=prod.ProductID) }}"><i class='bx bxs-edit'></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

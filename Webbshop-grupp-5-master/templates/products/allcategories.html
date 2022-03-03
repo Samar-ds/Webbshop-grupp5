@@ -1,0 +1,27 @@
+{% extends "baseTemplate.html" %}
+{% from "_formHelpers.html" import render_field %}
+{% block title %}All categories{% endblock %}
+{% block maincontent %}
+
+
+<table class="categories" style="font-size: 20px;">
+    <h2>Categories <a style= "float: right;" href="{{ url_for('product.addCategory') }}"><button style="float: right; background-color: #D10024;" type="button" class="btn btn-primary tm-btn-submit rounded-0">Create New</button></a>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    {% for cat in Categories %}
+    <tr>
+        <td><a style="color: #D10024;" href="{{ url_for('product.category', id=cat.CategoryID) }}">{{ cat.CategoryID }}</a></td>
+        <td>{{ cat.CategoryName }}</td>
+        <td>{{ cat.Description }}</td>
+        <td><a style="float: right; color: #D10024;" href="{{ url_for('product.editcategory', id=cat.CategoryID) }}"><i class='bx bxs-edit'></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
